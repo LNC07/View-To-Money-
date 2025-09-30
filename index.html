@@ -13,7 +13,7 @@
             --font-family: 'Poppins', sans-serif;
             --primary-color: #E74C3C; --secondary-color: #F39C12;
             --background-light: #FDFEFE; --surface-light: #FFFFFF; --text-primary-light: #2C3E50; --text-secondary-light: #808B96; --border-light: #EAEDED;
-            --background-dark: #0f151b; --surface-dark: #121a23; --text-primary-dark: #FDFEFE; --text-secondary-dark: #98a2ad; --border-dark: #1f2a35;
+            --background-dark: #1B2631; --surface-dark: #283747; --text-primary-dark: #FDFEFE; --text-secondary-dark: #ABB2B9; --border-dark: #566573;
             --success: #27AE60; --danger: #C0392B; --pending: #F39C12;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -68,7 +68,7 @@
         .dark-theme .progress-bar-bg { background-color: var(--border-dark); }
         .progress-bar-fg { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); transition: width 0.3s ease; }
         
-        form input, form select, form textarea { transition: all 0.2s ease-in-out; border: 1px solid; background: transparent; color: inherit; }
+        form input, form select, form textarea { transition: all 0.2s ease-in-out; border: 1px solid; }
         .light-theme form input, .light-theme form select { border-color: var(--border-light); }
         .dark-theme form input, .dark-theme form select { border-color: var(--border-dark); }
         form input:focus, form select:focus, form textarea:focus { outline: none; border-color: var(--primary-color) !important; box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2); }
@@ -90,26 +90,31 @@
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 500px; margin: 0 auto; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid; z-index: 1000; }
         .light-theme .bottom-nav { background-color: var(--surface-light); border-top-color: var(--border-light); }
         .dark-theme .bottom-nav { background-color: var(--surface-dark); border-top-color: var(--border-dark); }
-        .nav-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: var(--font-family); font-size: 0.75rem; transition: color 0.2s; flex-grow: 1; color: inherit; }
+        .nav-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; font-family: var(--font-family); font-size: 0.75rem; transition: color 0.2s; flex-grow: 1; }
+        .light-theme .nav-btn { color: var(--text-secondary-light); } .dark-theme .nav-btn { color: var(--text-secondary-dark); }
         .nav-btn i { font-size: 1.5rem; margin-bottom: 4px; } .nav-btn.active { color: var(--primary-color); }
         
-        .task-container { padding: 20px; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; border: 1px solid var(--border-dark); background: var(--surface-dark); }
+        .task-container { padding: 20px; border-radius: 12px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .light-theme .task-container { background-color: var(--surface-light); border: 1px solid var(--border-light); }
+        .dark-theme .task-container { background-color: var(--surface-dark); border: 1px solid var(--border-dark); }
         .task-icon-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
-        .task-info h3 { font-size: 1.1rem; font-weight: 600; } .task-info p { font-size: 0.85rem; opacity: 0.9; }
+        .task-info h3 { font-size: 1.1rem; font-weight: 600; } .task-info p { font-size: 0.85rem; }
         .action-btn { padding: 10px 20px; font-size: 0.9rem; font-weight: 600; color: #fff; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s; background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); margin-left: auto; white-space: nowrap; }
         .action-btn:disabled { background: #808B96; cursor: not-allowed; }
         
         .leaderboard-toggle { display: flex; justify-content: space-around; margin-bottom: 15px; }
-        .toggle-btn { padding: 10px 20px; border: none; background: none; font-size: 1rem; cursor: pointer; color: inherit; }
+        .toggle-btn { padding: 10px 20px; border: none; background: none; font-size: 1rem; cursor: pointer; }
+        .light-theme .toggle-btn { color: var(--text-secondary-light); } .dark-theme .toggle-btn { color: var(--text-secondary-dark); }
         .toggle-btn.active { font-weight: 700; color: var(--primary-color); border-bottom: 2px solid var(--primary-color); }
         .leaderboard-list { list-style: none; }
-        .leaderboard-item { display: flex; align-items: center; padding: 10px; margin-bottom: 8px; border-radius: 8px; background: var(--surface-dark); border: 1px solid var(--border-dark); }
+        .leaderboard-item { display: flex; align-items: center; padding: 10px; margin-bottom: 8px; border-radius: 8px; }
+        .light-theme .leaderboard-item { background-color: var(--surface-light); } .dark-theme .leaderboard-item { background-color: var(--surface-dark); }
         .rank { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); width: 40px; }
         .leaderboard-item img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover; }
         .leaderboard-name { font-weight: 600; flex-grow: 1; } .leaderboard-score { font-weight: 600; color: var(--primary-color); }
     </style>
 </head>
-<body class="dark-theme">
+<body>
     <div id="app-loader"><div class="spinner"></div><p id="loading-progress">0%</p></div>
     <div id="popup" class="popup-overlay"><div class="popup-content"><div id="popup-body"></div></div></div>
     <div id="app" style="display: none;">
@@ -175,15 +180,15 @@
     document.addEventListener('DOMContentLoaded', () => {
         const tg = window.Telegram.WebApp;
         const firebaseConfig = {
-          apiKey: "AIzaSyB3-ClSSDlKoVANTJOAYcnB3SZpEXjIBDE",
-          authDomain: "fast-earn-5a485.firebaseapp.com",
-          databaseURL: "https://fast-earn-5a485-default-rtdb.firebaseio.com",
-          projectId: "fast-earn-5a485",
-          storageBucket: "fast-earn-5a485.firebasestorage.app",
-          messagingSenderId: "897353554923",
-          appId: "1:897353554923:web:7010437d6353afa3ae17ae",
-          measurementId: "G-VD8Q9CE9NX"
-        };
+  apiKey: "AIzaSyB3-ClSSDlKoVANTJOAYcnB3SZpEXjIBDE",
+  authDomain: "fast-earn-5a485.firebaseapp.com",
+  databaseURL: "https://fast-earn-5a485-default-rtdb.firebaseio.com",
+  projectId: "fast-earn-5a485",
+  storageBucket: "fast-earn-5a485.firebasestorage.app",
+  messagingSenderId: "897353554923",
+  appId: "1:897353554923:web:7010437d6353afa3ae17ae",
+  measurementId: "G-VD8Q9CE9NX"
+};
         
         let appConfig = {}; let userState = {}; let tgUser = {}; let earningWalletBalance = 0;
         let leaderboardData = { referral: [], earning: [] };
@@ -195,14 +200,13 @@
 
         const showPopup = (content) => { popupBody.innerHTML = content; popup.style.display = 'flex'; };
         const closePopup = () => { popup.style.display = 'none'; };
-        const updateProgress = (percentage) => { loadingProgress.textContent = percentage + '%'; };
+        const updateProgress = (percentage) => { loadingProgress.textContent = `${percentage}%`; };
 
         const loadAdSdk = (zoneId) => {
             if (!zoneId) { console.error("Ad Zone ID is missing from Firebase config!"); return; }
             if (document.querySelector(`script[data-zone='${zoneId}']`)) return;
             const script = document.createElement('script');
-            // NOTE: keep your actual SDK url; placeholder added so it doesn't break
-            script.src = 'https://libtl.com/sdk.js';
+            script.src = `//libtl.com/sdk.js`;
             script.setAttribute('data-zone', zoneId);
             script.setAttribute('data-sdk', `show_${zoneId}`);
             script.async = true;
@@ -211,9 +215,7 @@
 
         const initApp = async () => {
             tg.ready(); tg.expand();
-            // FORCE DARK THEME
-            document.body.className = 'dark-theme';
-
+            document.body.className = `${tg.colorScheme}-theme`;
             tgUser = tg.initDataUnsafe.user;
             if (!tgUser || !tgUser.id) { tg.showAlert("User data not found.", () => tg.close()); return; }
 
@@ -225,7 +227,7 @@
                 appConfig = configSnapshot.val() || {};
                 updateProgress(40);
 
-                await loadUserData(db);
+                await loadUserData(db); // This now depends on appConfig, so it runs after.
                 updateProgress(60);
 
                 const referralBoardPromise = db.ref('users').orderByChild('referrals').limitToLast(10).once('value');
@@ -263,17 +265,20 @@
             let userData = snapshot.val();
             
             if (!userData) {
+                // This block runs ONLY for a new user
                 const startParam = tg.initDataUnsafe.start_param;
                 const referralId = (startParam && !isNaN(startParam)) ? startParam : null;
                 
                 userData = { id: tgUser.id, firstName: tgUser.first_name || '', lastName: tgUser.last_name || '', username: tgUser.username || '', photoUrl: tgUser.photo_url || '', balance: 0, referrals: 0, referredBy: referralId, totalEarned: 0, lifetimeAdCount: 0, lastAdWatchDate: '1970-01-01', dailyAdCount: 0, breakUntil: 0, completedTasks: {}, welcomed: false };
                 await userRef.set(userData);
                 
+                // If there's a valid referrer, credit them.
                 if (referralId && referralId != tgUser.id) {
                     const referrerRef = db.ref(`users/${referralId}`);
                     const bonusAmount = parseFloat(appConfig.referralBonus || 0);
                     
                     if (bonusAmount > 0) {
+                        // We use transactions for safety to avoid race conditions.
                         await referrerRef.transaction(currentData => {
                             if (currentData) {
                                 currentData.balance = (currentData.balance || 0) + bonusAmount;
@@ -282,6 +287,7 @@
                             return currentData;
                         });
                     } else {
+                        // If no bonus, still increment the referral count
                         await referrerRef.child('referrals').set(firebase.database.ServerValue.increment(1));
                     }
                 }
@@ -296,7 +302,7 @@
         };
         
         const loadTransactionHistory = async (db) => {
-            userTransactions = [];
+            userTransactions = []; // Clear previous history before loading
             const statuses = ['pending', 'completed', 'rejected'];
             const historyPromises = statuses.map(status => db.ref(`withdrawals/${status}`).orderByChild('userId').equalTo(tgUser.id).once('value'));
             const snapshots = await Promise.all(historyPromises);
@@ -321,15 +327,12 @@
             const container = document.getElementById('ad-progress-container');
             const dailyLimit = appConfig.dailyAdLimit || 1;
             const watchedCount = userState.dailyAdCount || 0;
-            const percentage = Math.min(100, (watchedCount / dailyLimit) * 100);
-            container.innerHTML = `
-                <div class="progress-info"><span>Daily Ad Progress</span><span>${watchedCount} / ${dailyLimit}</span></div>
-                <div class="progress-bar-bg"><div class="progress-bar-fg" style="width: ${percentage}%;"></div></div>
-            `;
+            const percentage = (watchedCount / dailyLimit) * 100;
+            container.innerHTML = `<div class="progress-info"><span>Daily Ad Progress</span><span>${watchedCount} / ${dailyLimit}</span></div><div class="progress-bar-bg"><div class="progress-bar-fg" style="width: ${percentage}%;"></div></div>`;
         };
         
         const renderEarningsGraph = async () => {
-            const chartEl = document.getElementById('earnings-chart'); const labelsEl = document.getElementById('earnings-chart-labels');
+             const chartEl = document.getElementById('earnings-chart'); const labelsEl = document.getElementById('earnings-chart-labels');
             chartEl.innerHTML = ''; labelsEl.innerHTML = '';
             const today = new Date(); const dates = [];
             for (let i = 6; i >= 0; i--) { const date = new Date(today); date.setDate(today.getDate() - i); dates.push(date.toISOString().slice(0, 10)); }
@@ -340,14 +343,8 @@
             earningsData.forEach((earning, index) => {
                 const height = (earning / maxEarning) * 100;
                 const dateLabel = new Date(dates[index]).toLocaleDateString('en-US', { day: 'numeric' });
-                const bar = document.createElement('div');
-                bar.className = 'bar';
-                bar.style.height = height + '%';
-                bar.innerHTML = `<span class="tooltip">${earning.toFixed(2)} TK</span>`;
-                chartEl.appendChild(bar);
-                const lbl = document.createElement('span');
-                lbl.textContent = dateLabel;
-                labelsEl.appendChild(lbl);
+                chartEl.innerHTML += `<div class="bar" style="height: ${height}%;"><span class="tooltip">${earning.toFixed(2)} TK</span></div>`;
+                labelsEl.innerHTML += `<span>${dateLabel}</span>`;
             });
         };
         
@@ -383,8 +380,8 @@
                 updates.dailyAdCount = userState.dailyAdCount;
                 updates.lifetimeAdCount = userState.lifetimeAdCount;
                 updates.totalEarned = userState.totalEarned;
-                if ((userState.dailyAdCount) % (appConfig.adsPerBreak || 9999) === 0 && (appConfig.adsPerBreak || 0) > 0) {
-                    updates.breakUntil = Date.now() + ((appConfig.breakDuration || 0) * 60000);
+                if ((userState.dailyAdCount) % appConfig.adsPerBreak === 0 && appConfig.adsPerBreak > 0) {
+                    updates.breakUntil = Date.now() + (appConfig.breakDuration * 60000);
                     userState.breakUntil = updates.breakUntil;
                 }
                 await userRef.update(updates);
@@ -425,7 +422,7 @@
             listEl.innerHTML = userTransactions.map(item => `
                 <div class="history-item">
                     <div class="history-details">
-                        <p>${Number(item.amount).toFixed(2)} TK - ${item.method}</p>
+                        <p>${item.amount.toFixed(2)} TK - ${item.method}</p>
                         <small>${new Date(item.timestamp).toLocaleString()}</small>
                     </div>
                     <span class="history-status status-${item.status}">${item.status}</span>
@@ -457,6 +454,7 @@
                 }
             });
             document.getElementById('dynamic-tasks-container').addEventListener('click', (e) => handleClaimTask(e));
+            // Event listener is attached directly to the form now for better handling
             document.getElementById('profile-page').addEventListener('submit', (e) => handleWithdraw(e));
             document.getElementById('referral-section').addEventListener('click', (e) => { if(e.target.id === 'copy-ref-link-btn') copyReferralLink(); });
             document.getElementById('move-to-balance-btn').addEventListener('click', handleMoveToBalance);
@@ -466,30 +464,15 @@
             const container = document.getElementById('ad-task-container');
             const now = Date.now();
             const onBreak = userState.breakUntil && now < userState.breakUntil;
-            const limitReached = userState.dailyAdCount >= (appConfig.dailyAdLimit || 0);
+            const limitReached = userState.dailyAdCount >= appConfig.dailyAdLimit;
             let html = '';
             if (onBreak) {
                 const remaining = Math.ceil((userState.breakUntil - now) / 60000);
-                html = `
-                    <div class="task-container">
-                        <img class="task-icon-img" src="https://img.icons8.com/ios-filled/100/hourglass.png" alt="icon">
-                        <div class="task-info"><h3>Break Time!</h3><p>Please wait for ${remaining} more minutes.</p></div>
-                        <button class="action-btn" disabled>Waiting</button>
-                    </div>`;
+                html = `<div class="task-container"><img class="task-icon-img" src="https://img.icons8.com/ios-filled/100/hourglass.png" alt="icon"><div class="task-info"><h3>Break Time!</h3><p>Please wait for ${remaining} more minutes.</p></div><button class="action-btn" disabled>Waiting</button></div>`;
             } else if (limitReached) {
-                html = `
-                    <div class="task-container">
-                        <img class="task-icon-img" src="https://img.icons8.com/ios-filled/100/stop-circled.png" alt="icon">
-                        <div class="task-info"><h3>Daily Limit Reached</h3><p>Come back tomorrow for more ads.</p></div>
-                        <button class="action-btn" disabled>Limit</button>
-                    </div>`;
+                html = `<div class="task-container"><img class="task-icon-img" src="https://img.icons8.com/ios-filled/100/stop-circled.png" alt="icon"><div class="task-info"><h3>Daily Limit Reached</h3><p>Come back tomorrow for more ads.</p></div><button class="action-btn" disabled>Limit</button></div>`;
             } else {
-                html = `
-                    <div class="task-container">
-                        <img class="task-icon-img" src="https://img.icons8.com/ios-filled/100/play-button-circled.png" alt="icon">
-                        <div class="task-info"><h3>Watch a Rewarded Ad</h3><p>Earn ${appConfig.adValue || 0} TK for every ad.</p></div>
-                        <button id="watch-ad-btn" class="action-btn">Watch Ad</button>
-                    </div>`;
+                html = `<div class="task-container"><img class="task-icon-img" src="https://img.icons8.com/ios-filled/100/play-button-circled.png" alt="icon"><div class="task-info"><h3>Watch a Rewarded Ad</h3><p>Earn ${appConfig.adValue || 0} TK for every ad.</p></div><button id="watch-ad-btn" class="action-btn">Watch Ad</button></div>`;
             }
             container.innerHTML = html;
             if (!onBreak && !limitReached) { document.getElementById('watch-ad-btn').addEventListener('click', handleWatchAd); }
@@ -498,7 +481,7 @@
         const handleClaimTask = async (e) => {
             if (e.target.classList.contains('action-btn') && e.target.dataset.taskId) {
                 const taskId = e.target.dataset.taskId;
-                const task = (appConfig.tasks || {})[taskId];
+                const task = appConfig.tasks[taskId];
                 if (!task || (userState.completedTasks && userState.completedTasks[taskId])) { tg.showAlert('You have already claimed this bonus.'); return; }
                 tg.openLink(e.target.dataset.taskUrl);
                 e.target.disabled = true; e.target.textContent = 'Claiming...';
@@ -518,22 +501,24 @@
             }
         };
 
-        // ======== WITHDRAW ONLY ON 5TH (UI + LOGIC) ========
         const handleWithdraw = async (e) => {
+            // Ensure this function only runs for the withdraw form
             if(e.target.id !== 'withdraw-form') return;
             e.preventDefault();
 
-            // HARD GUARD: Only on 5th of month
-            const today = new Date();
-            if (today.getDate() !== 5) {
-                tg.showAlert("Withdrawal failed. You can only withdraw on the 5th of each month.");
-                return;
+            // *** NEW: Minimum referral check ***
+            const minRefsRequired = appConfig.minimumWithdrawReferrals || 0;
+            const userReferrals = userState.referrals || 0;
+            
+            if (minRefsRequired > 0 && userReferrals < minRefsRequired) {
+                tg.showAlert(`Withdrawal failed. You need at least ${minRefsRequired} referrals to make a withdrawal. You currently have ${userReferrals}.`);
+                return; // Stop the function here
             }
 
             const methodEl = document.getElementById('withdraw-method');
             const accountNumber = document.getElementById('account-number').value;
             const amount = parseFloat(document.getElementById('amount').value);
-            const selectedMethod = (appConfig.withdrawMethods || []).find(m => m.name === methodEl.value);
+            const selectedMethod = appConfig.withdrawMethods.find(m => m.name === methodEl.value);
             
             if (isNaN(amount) || amount <= 0) { tg.showAlert("Please enter a valid amount."); return; }
             if (!selectedMethod) { tg.showAlert("Invalid withdrawal method."); return; }
@@ -544,15 +529,17 @@
             const db = firebase.database();
             try {
                 const userRef = db.ref(`users/${tgUser.id}`);
-                // optimistic UI
+                // Optimistically update local state for faster UI response
                 userState.balance -= amount;
                 renderUI(); 
                 
+                // Perform database operations
                 await userRef.child('balance').set(firebase.database.ServerValue.increment(-amount));
                 const reqId = db.ref('withdrawals/pending').push().key;
                 const newRequest = { id: reqId, userId: tgUser.id, userName: `${userState.firstName} ${userState.lastName}`, method: selectedMethod.name, account: accountNumber, amount: amount, status: 'pending', timestamp: firebase.database.ServerValue.TIMESTAMP };
                 await db.ref(`withdrawals/pending/${reqId}`).set(newRequest);
                 
+                // Add to local history instantly and re-render history
                 userTransactions.unshift(newRequest);
                 renderWithdrawalHistory(); 
 
@@ -560,10 +547,12 @@
                 tg.showAlert("Withdrawal request submitted successfully!");
                 document.getElementById('withdraw-form').reset();
             } catch (error) {
+                // If error, revert the optimistic update
                 userState.balance += amount;
                 tg.HapticFeedback.notificationOccurred('error'); 
                 tg.showAlert("Failed to submit request. Your balance has been restored.");
             } finally {
+                // Ensure UI is correct and button is re-enabled
                 renderUI();
                 btn.disabled = false;
                 btn.textContent = 'Submit Request';
@@ -573,13 +562,14 @@
         const copyReferralLink = () => {
             const refLinkInput = document.getElementById('referral-link');
             refLinkInput.select();
-            refLinkInput.setSelectionRange(0, 99999);
+            refLinkInput.setSelectionRange(0, 99999); // For mobile devices
             try {
                 navigator.clipboard.writeText(refLinkInput.value).then(() => {
                     tg.HapticFeedback.notificationOccurred('success');
                     tg.showAlert("Referral link copied!");
                 });
             } catch (err) {
+                // Fallback for older browsers
                 document.execCommand('copy');
                 tg.HapticFeedback.notificationOccurred('success');
                 tg.showAlert("Referral link copied!");
@@ -597,12 +587,7 @@
             data.forEach((user, index) => {
                 const score = activeBoard === 'referral' ? (user.referrals || 0) : (user.totalEarned || 0).toFixed(2);
                 const item = document.createElement('li'); item.className = 'leaderboard-item';
-                item.innerHTML = `
-                    <span class="rank">#${index + 1}</span>
-                    <img src="${user.photoUrl || 'https://via.placeholder.com/40'}" alt="User">
-                    <span class="leaderboard-name">${user.firstName || ''}</span>
-                    <span class="leaderboard-score">${score}</span>
-                `;
+                item.innerHTML = `<span class="rank">#${index + 1}</span><img src="${user.photoUrl || 'https://via.placeholder.com/40'}" alt="User"><span class="leaderboard-name">${user.firstName}</span><span class="leaderboard-score">${score}</span>`;
                 listEl.appendChild(item);
             });
         };
@@ -616,11 +601,7 @@
                 tasks.forEach(task => {
                     const isCompleted = userState.completedTasks && userState.completedTasks[task.key];
                     const el = document.createElement('div'); el.className = 'task-container';
-                    el.innerHTML = `
-                        <img class="task-icon-img" src="${task.icon}" alt="icon">
-                        <div class="task-info"><h3>${task.name}</h3><p>Get ${task.reward} bonus TK.</p></div>
-                        <button class="action-btn" data-task-id="${task.key}" data-task-url="${task.url}" ${isCompleted ? 'disabled' : ''}>${isCompleted ? 'Claimed' : 'Claim Bonus'}</button>
-                    `;
+                    el.innerHTML = `<img class="task-icon-img" src="${task.icon}" alt="icon"><div class="task-info"><h3>${task.name}</h3><p>Get ${task.reward} bonus TK.</p></div><button class="action-btn" data-task-id="${task.key}" data-task-url="${task.url}" ${isCompleted ? 'disabled' : ''}>${isCompleted ? 'Claimed' : 'Claim Bonus'}</button>`;
                     container.appendChild(el);
                 });
             }
@@ -629,47 +610,21 @@
         const renderReferralSection = () => {
             const container = document.getElementById('referral-section');
             const refLink = `https://t.me/${appConfig.botUsername}/app?startapp=${tgUser.id}`;
-            container.innerHTML = `
-                <div class="task-container" style="flex-direction: column; align-items: stretch;">
-                    <h3>Refer & Earn More!</h3>
-                    <p>Invite friends and earn ${appConfig.referralBonus || 0} TK per referral.</p>
-                    <input type="text" id="referral-link" value="${refLink}" readonly style="padding: 10px; text-align: center; border-radius: 8px; border: 1px dashed var(--primary-color); margin: 10px 0;">
-                    <button id="copy-ref-link-btn" class="action-btn">Copy Link</button>
-                </div>`;
+            container.innerHTML = `<div class="task-container" style="flex-direction: column; align-items: stretch;"><h3>Refer & Earn More!</h3><p>Invite friends and earn ${appConfig.referralBonus || 0} TK per referral.</p><input type="text" id="referral-link" value="${refLink}" readonly style="padding: 10px; text-align: center; border-radius: 8px; border: 1px dashed var(--primary-color); margin: 10px 0;"><button id="copy-ref-link-btn" class="action-btn">Copy Link</button></div>`;
         };
 
-        // ======== WITHDRAW SECTION: UI NOTICE + BUTTON DISABLE IF NOT 5TH ========
         const renderWithdrawSection = () => {
             const container = document.getElementById('withdraw-section'); let optionsHtml = '';
             if (appConfig.withdrawMethods) { appConfig.withdrawMethods.forEach(method => { optionsHtml += `<option value="${method.name}">${method.name} (Min: ${method.min} TK)</option>`; }); }
             
-            const today = new Date();
-            const isWithdrawDay = today.getDate() === 5;
+            // *** NEW: Add notice about referral requirement ***
+            const minRefs = appConfig.minimumWithdrawReferrals || 0;
+            let referralNotice = '';
+            if (minRefs > 0) {
+                referralNotice = `<p style="font-size: 0.85rem; text-align: center; margin-bottom: 15px; opacity: 0.8;"><b>Note:</b> You need at least <b>${minRefs} referrals</b> to be eligible for withdrawal.</p>`;
+            }
 
-            const withdrawNotice = `
-              <p style="font-size: 0.85rem; text-align: center; margin-bottom: 15px; opacity: 0.8;">
-                <b>Note:</b> Withdraw only on the <b>5th</b> of every month.
-              </p>
-            `;
-
-            container.innerHTML = `
-              <form id="withdraw-form" class="task-container" style="flex-direction: column; align-items: stretch;">
-                <h3>Request Withdraw</h3>
-                ${withdrawNotice}
-                <div class="form-group" style="width:100%">
-                  <label for="withdraw-method">Method:</label>
-                  <select id="withdraw-method" required style="width: 100%; padding: 10px; border-radius: 8px;">${optionsHtml}</select>
-                </div>
-                <div class="form-group" style="width:100%">
-                  <label for="account-number">Account Number/ID:</label>
-                  <input type="text" id="account-number" required style="width: 100%; padding: 10px; border-radius: 8px;">
-                </div>
-                <div class="form-group" style="width:100%">
-                  <label for="amount">Amount:</label>
-                  <input type="number" step="any" id="amount" required style="width: 100%; padding: 10px; border-radius: 8px;">
-                </div>
-                <button type="submit" id="withdraw-submit-btn" class="action-btn" ${isWithdrawDay ? '' : 'disabled'}>Submit Request</button>
-              </form>`;
+            container.innerHTML = `<form id="withdraw-form" class="task-container" style="flex-direction: column; align-items: stretch;"><h3>Request Withdraw</h3>${referralNotice}<div class="form-group" style="width:100%"><label for="withdraw-method">Method:</label><select id="withdraw-method" required style="width: 100%; padding: 10px; border-radius: 8px;">${optionsHtml}</select></div><div class="form-group" style="width:100%"><label for="account-number">Account Number/ID:</label><input type="text" id="account-number" required style="width: 100%; padding: 10px; border-radius: 8px;"></div><div class="form-group" style="width:100%"><label for="amount">Amount:</label><input type="number" step="any" id="amount" required style="width: 100%; padding: 10px; border-radius: 8px;"></div><button type="submit" id="withdraw-submit-btn" class="action-btn">Submit Request</button></form>`;
         };
 
         const renderDynamicLinks = () => {
@@ -680,11 +635,7 @@
                 links.reverse();
                 links.forEach(link => {
                     const el = document.createElement('div'); el.className = 'task-container';
-                    el.innerHTML = `
-                        <img class="task-icon-img" src="${link.icon}" alt="icon">
-                        <div class="task-info"><h3>${link.name}</h3></div>
-                        <button class="action-btn" onclick="window.Telegram.WebApp.openLink('${link.url}')">Visit</button>
-                    `;
+                    el.innerHTML = `<img class="task-icon-img" src="${link.icon}" alt="icon"><div class="task-info"><h3>${link.name}</h3></div><button class="action-btn" onclick="window.Telegram.WebApp.openLink('${link.url}')">Visit</button>`;
                     container.appendChild(el);
                 });
             }
